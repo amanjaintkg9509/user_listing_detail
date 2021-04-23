@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="f-center">
+    <div class="m-w">Total Results: {{ totalRecords }}</div>
+    <div>
+      <div
+        class="card"
+        *ngFor="
+          let data of userData | paginate: { itemsPerPage: 3, currentPage: p }
+        "
+      >
+        <div class="card-detail">
+          <img src="{{ data.avatar_url }}" height="80" width="80" />
+          <div class="w-100">
+            <span>
+              <h2>{{ data.login | titlecase }}</h2>
+              <p><b>Profile URL :</b> {{ data.url }}</p>
+            </span>
+            <div class="f-c-space">
+              <div>
+                <div>Data One : Value One</div>
+                <div>Data Two : Value Two</div>
+              </div>
+              <div>
+                <button (click)="detail(data.login)">
+                  {{
+                    userDetail && data?.login === userDetail?.login
+                      ? "Collapse"
+                      : "Details"
+                  }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="userDetail && data?.login === userDetail?.login"
+          class="user-detail"
+        >
+          <hr />
+          <table>
+            <tr>
+              <td>Followers</td>
+              <td>{{ userDetail?.followers }}</td>
+            </tr>
+            <tr>
+              <td>Following</td>
+              <td>{{ userDetail?.following }}</td>
+            </tr>
+            <tr>
+              <td>Public Repos</td>
+              <td>{{ userDetail?.public_repos }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="m-l" *ngIf="userData.length > 0">
+      <pagination-controls
+        (pageChange)="p = $event"
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

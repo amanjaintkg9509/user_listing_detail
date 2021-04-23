@@ -1,0 +1,20 @@
+<div class="header-container">
+  <div>
+    <select class="short">
+      <option>Sort By Name (A-Z)</option>
+      <option>Sort By Name (Z-A)</option>
+      <option>Sort By Rank (1-9)</option>
+      <option>Sort By Rank (9-1)</option>
+    </select>
+  </div>
+  <div class="p-left">
+    <div class="searchDiv">
+      <input
+        placeholder="Search"
+        class="search"
+        #search
+        (keyup)="searchData(search.value)"
+      /><i class="fa fa-search faIcon" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
