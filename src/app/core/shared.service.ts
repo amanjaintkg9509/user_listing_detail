@@ -7,6 +7,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class SharedService {
   public searchText: BehaviorSubject<object> = new BehaviorSubject<object>({});
+  public shortText: BehaviorSubject<object> = new BehaviorSubject<object>({});
   public rootUrl: string = "https://api.github.com";
   constructor(private http: HttpClient) {}
 
@@ -20,5 +21,13 @@ export class SharedService {
 
   getSearchText() {
     return this.searchText.asObservable();
+  }
+
+  setShortText(data) {
+    this.shortText.next(data);
+  }
+
+  getShortText() {
+    return this.shortText.asObservable();
   }
 }

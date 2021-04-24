@@ -1,6 +1,6 @@
 <div class="container">
   <div class="f-center">
-    <div class="m-w">Total Results: {{ totalRecords }}</div>
+    <div class="m-w"><b>Total Results:</b> {{ totalRecords }}</div>
     <div>
       <div
         class="card"
@@ -17,8 +17,8 @@
             </span>
             <div class="f-c-space">
               <div>
-                <div>Data One : Value One</div>
-                <div>Data Two : Value Two</div>
+                <div><b>Site Admin :</b> {{ data.site_admin }}</div>
+                <div><b>Score :</b> {{ data.score }}</div>
               </div>
               <div>
                 <button (click)="detail(data.login)">
@@ -39,6 +39,24 @@
           <hr />
           <table>
             <tr>
+              <td>Full Name</td>
+              <td>{{ userDetail?.name ? userDetail?.name : "-" }}</td>
+            </tr>
+            <tr>
+              <td>Location</td>
+              <td>{{ userDetail?.location ? userDetail?.location : "-" }}</td>
+            </tr>
+            <tr>
+              <td>Twitter</td>
+              <td>
+                {{
+                  userDetail?.twitter_username
+                    ? userDetail?.twitter_username
+                    : "-"
+                }}
+              </td>
+            </tr>
+            <tr>
               <td>Followers</td>
               <td>{{ userDetail?.followers }}</td>
             </tr>
@@ -49,6 +67,10 @@
             <tr>
               <td>Public Repos</td>
               <td>{{ userDetail?.public_repos }}</td>
+            </tr>
+            <tr>
+              <td>Public Gists</td>
+              <td>{{ userDetail?.public_gists }}</td>
             </tr>
           </table>
         </div>

@@ -1,10 +1,11 @@
 <div class="header-container">
   <div>
-    <select class="short">
-      <option>Sort By Name (A-Z)</option>
-      <option>Sort By Name (Z-A)</option>
-      <option>Sort By Rank (1-9)</option>
-      <option>Sort By Rank (9-1)</option>
+    <select class="short" (change)="short($event)">
+      <option value="">Select Sort By</option>
+      <option value="name_asc">Sort By Name (A-Z)</option>
+      <option value="name_desc">Sort By Name (Z-A)</option>
+      <!-- <option>Sort By Rank (1-9)</option>
+      <option>Sort By Rank (9-1)</option> -->
     </select>
   </div>
   <div class="p-left">

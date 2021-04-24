@@ -13,15 +13,34 @@ export class UserComponent implements OnInit {
   p: number = 1;
   search: string = "a";
   userDetail: any;
+  repoDetail: any;
   constructor(private sharedService: SharedService) {}
 
   ngOnInit() {
     this.sharedService.getSearchText().subscribe((searchText: any) => {
       if (typeof searchText === "object") return false;
       if (searchText.length > 0)
-        this.getData("/search/users?q=" + searchText + "&per_page=100");
+        this.getData("/search/users?q=" + searchText + "&per_page=30");
     });
-    this.getData("/search/users?q=" + this.search + "&per_page=100");
+
+    this.sharedService.getShortText().subscribe((shortText: any) => {
+      if (typeof shortText === "object") return false;
+      if (shortText.length > 0) {
+        if (shortText === "name_asc") {
+          this.userData = this.userData.sort((a, b) =>
+            a.login.localeCompare(b.login)
+          );
+        }
+
+        if (shortText === "name_desc") {
+          this.userData = this.userData.sort((a, b) =>
+            b.login.localeCompare(a.login)
+          );
+        }
+      }
+    });
+
+    this.getData("/search/users?q=" + this.search + "&per_page=30");
   }
 
   getData(path) {
@@ -51,5 +70,11 @@ export class UserComponent implements OnInit {
     this.sharedService.get("/users/" + text).subscribe((res: any) => {
       this.userDetail = res;
     });
+
+    this.sharedService
+      .get("/users/" + text + "/repos")
+      .subscribe((res: any) => {
+        this.repoDetail = res;
+      });
   }
 }

@@ -15,4 +15,8 @@ export class HeaderComponent implements OnInit {
   searchData(text) {
     this.sharedService.setSearchText(text);
   }
+
+  short(text) {
+    this.sharedService.setShortText(text.target.value);
+  }
 }

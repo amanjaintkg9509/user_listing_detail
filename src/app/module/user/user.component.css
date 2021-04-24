@@ -1,9 +1,3 @@
-.container {
-  background-color: #EFEDED;
-  width: 100vw;
-  height: 90vh;
-}
-
 .f-center {
   display: flex;
   flex-direction: column;
@@ -52,7 +46,6 @@ img {
 }
 
 .user-detail {
-  height: 18vh;
   background: white;
 }
 
